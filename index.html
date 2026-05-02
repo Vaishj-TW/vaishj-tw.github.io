@@ -2,250 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vaishnavi Jai</title>
-
-  <!-- Prism for code highlighting -->
-  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
-
-<style>
-  :root {
-    --bg: #ffffff;
-    --panel: #f9fafb;
-    --text: #111827;
-    --muted: #6b7280;
-    --accent: #4f46e5;
-    --border: #e5e7eb;
-    --code-bg: #f3f4f6;
-  }
-
-  [data-theme="dark"] {
-    --bg: #0f172a;
-    --panel: #111827;
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --accent: #6366f1;
-    --border: #1f2937;
-    --code-bg: #020617;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    display: grid;
-    grid-template-columns: 260px 1fr 260px;
-    font-family: -apple-system, system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    padding: 20px;
-    border-right: 1px solid var(--border);
-    background: var(--panel);
-  }
-
-  .sidebar h2 {
-    margin-bottom: 20px;
-    font-size: 18px;
-  }
-
-  .nav a {
-    display: block;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 8px 0;
-    font-size: 14px;
-  }
-
-  .nav a:hover {
-    color: var(--text);
-  }
-
-  .main {
-    padding: 40px;
-    max-width: 800px;
-  }
-
-  h1 { font-size: 28px; margin-bottom: 10px; }
-  h2 { margin-top: 40px; margin-bottom: 10px; }
-  h3 { margin-top: 20px; }
-
-  p {
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-
-  .toc {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    padding: 20px;
-    border-left: 1px solid var(--border);
-    background: var(--panel);
-    font-size: 14px;
-  }
-
-  .toc a {
-    display: block;
-    color: var(--muted);
-    text-decoration: none;
-    margin-bottom: 6px;
-  }
-
-  .toc a:hover {
-    color: var(--text);
-  }
-
-  .search input {
-    width: 100%;
-    padding: 8px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    border-radius: 6px;
-  }
-
-  /* Toggle button */
-  .toggle {
-    margin-top: 10px;
-    padding: 6px 10px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text);
-    border-radius: 6px;
-    cursor: pointer;
-  }
-
-  pre {
-    background: var(--code-bg) !important;
-    padding: 15px;
-    border-radius: 8px;
-    overflow-x: auto;
-  }
-</style>
-  
+  <title>About Me</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <h2>Vaishnavi Jai</h2>
+<aside class="sidebar">
+  <h2>Vaishnavi Jai</h2>
 
-    <div class="search">
-      <input type="text" id="search" placeholder="Search..." />
-    </div>
+  <div class="search">
+    <input placeholder="Search..." />
+  </div>
 
-    <nav class="nav">
-      <a href="#intro">Introduction</a>
-      <a href="#use-cases">Use Cases</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </aside>
+  <button id="themeToggle" class="toggle">Toggle</button>
 
-  <!-- Main Content -->
-  <main class="main" id="content">
+  <nav class="nav">
+    <a href="/index.html">About Me</a>
+    <a href="/experience.html">Experience</a>
+    <a href="/samples.html">Samples</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</aside>
 
-    <section id="intro">
-      <h1>Introduction</h1>
-      <p>
-        I'm a UX writer focused on building clear, structured, and scalable content systems.
-        My work lives at the intersection of product, engineering, and user experience.
-      </p>
+<main class="main">
+  <h1>About Me</h1>
 
-      <h2>Philosophy</h2>
-      <p>
-        Good documentation reduces friction. Great documentation disappears into the product.
-      </p>
-    </section>
+  <h2>Overview</h2>
+  <p>You build structured UX content systems.</p>
 
-    <section id="use-cases">
-      <h1>Use Cases</h1>
+  <h2>Approach</h2>
+  <p>You treat content as part of the product system.</p>
+</main>
 
-      <h2>Payment Optimization UX</h2>
-      <p>
-        Designed flows that reduce drop-offs during checkout by improving clarity around payment methods.
-      </p>
+<aside class="toc">
+  <h4>On this page</h4>
+  <div id="toc"></div>
+</aside>
 
-      <pre><code class="language-js">
-function optimizeCheckout(user) {
-  if (user.prefersUPI) return showUPI();
-  return showAllMethods();
-}
-      </code></pre>
+<!-- shared script -->
+<script>
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
 
-      <h2>Audit Logs</h2>
-      <p>
-        Created structured log messaging systems for traceability and debugging.
-      </p>
-    </section>
+  document.getElementById("themeToggle").onclick = () => {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  };
 
-    <section id="experience">
-      <h1>Experience</h1>
+  document.querySelectorAll(".nav a").forEach(link => {
+    if (link.href === window.location.href) link.classList.add("active");
+  });
 
-      <h2>UX Writer</h2>
-      <p>
-        Built scalable UX content systems across onboarding, compliance, and payments.
-      </p>
+  const toc = document.getElementById("toc");
+  document.querySelectorAll(".main h2").forEach(h => {
+    const id = h.innerText.replace(/\s+/g, "-").toLowerCase();
+    h.id = id;
 
-      <h2>Key Skills</h2>
-      <ul>
-        <li>Information architecture</li>
-        <li>Microcopy systems</li>
-        <li>Developer-facing content</li>
-      </ul>
-    </section>
+    const a = document.createElement("a");
+    a.href = "#" + id;
+    a.textContent = h.innerText;
 
-    <section id="contact">
-      <h1>Contact</h1>
-      <p>Email: your@email.com</p>
-      <p>LinkedIn: your-link</p>
-    </section>
-
-  </main>
-
-  <!-- Right TOC -->
-  <aside class="toc">
-    <h4>On this page</h4>
-    <div id="toc"></div>
-  </aside>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
-
-  <script>
-    // Generate TOC
-    const headings = document.querySelectorAll(".main h2");
-    const toc = document.getElementById("toc");
-
-    headings.forEach(h => {
-      const id = h.innerText.replace(/\s+/g, "-").toLowerCase();
-      h.id = id;
-
-      const a = document.createElement("a");
-      a.href = "#" + id;
-      a.textContent = h.innerText;
-
-      toc.appendChild(a);
-    });
-
-    // Search
-    document.getElementById("search").addEventListener("input", e => {
-      const term = e.target.value.toLowerCase();
-      document.querySelectorAll(".main section").forEach(section => {
-        section.style.display = section.innerText.toLowerCase().includes(term)
-          ? "block"
-          : "none";
-      });
-    });
-  </script>
+    toc.appendChild(a);
+  });
+</script>
 
 </body>
 </html>
