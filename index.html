@@ -8,117 +8,128 @@
   <!-- Prism for code highlighting -->
   <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
 
-  <style>
-    :root {
-      --bg: #0f172a;
-      --panel: #111827;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #6366f1;
-      --border: #1f2937;
-    }
+<style>
+  :root {
+    --bg: #ffffff;
+    --panel: #f9fafb;
+    --text: #111827;
+    --muted: #6b7280;
+    --accent: #4f46e5;
+    --border: #e5e7eb;
+    --code-bg: #f3f4f6;
+  }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  [data-theme="dark"] {
+    --bg: #0f172a;
+    --panel: #111827;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --accent: #6366f1;
+    --border: #1f2937;
+    --code-bg: #020617;
+  }
 
-    body {
-      display: grid;
-      grid-template-columns: 260px 1fr 260px;
-      font-family: -apple-system, system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* Sidebar */
-    .sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      padding: 20px;
-      border-right: 1px solid var(--border);
-      background: var(--panel);
-    }
+  body {
+    display: grid;
+    grid-template-columns: 260px 1fr 260px;
+    font-family: -apple-system, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
 
-    .sidebar h2 {
-      margin-bottom: 20px;
-      font-size: 18px;
-    }
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 20px;
+    border-right: 1px solid var(--border);
+    background: var(--panel);
+  }
 
-    .nav a {
-      display: block;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 8px 0;
-      font-size: 14px;
-    }
+  .sidebar h2 {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
 
-    .nav a:hover {
-      color: white;
-    }
+  .nav a {
+    display: block;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 8px 0;
+    font-size: 14px;
+  }
 
-    /* Main */
-    .main {
-      padding: 40px;
-      max-width: 800px;
-    }
+  .nav a:hover {
+    color: var(--text);
+  }
 
-    h1 { font-size: 28px; margin-bottom: 10px; }
-    h2 { margin-top: 40px; margin-bottom: 10px; }
-    h3 { margin-top: 20px; }
+  .main {
+    padding: 40px;
+    max-width: 800px;
+  }
 
-    p {
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 15px;
-    }
+  h1 { font-size: 28px; margin-bottom: 10px; }
+  h2 { margin-top: 40px; margin-bottom: 10px; }
+  h3 { margin-top: 20px; }
 
-    /* Right TOC */
-    .toc {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      padding: 20px;
-      border-left: 1px solid var(--border);
-      background: var(--panel);
-      font-size: 14px;
-    }
+  p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
 
-    .toc h4 {
-      margin-bottom: 10px;
-    }
+  .toc {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 20px;
+    border-left: 1px solid var(--border);
+    background: var(--panel);
+    font-size: 14px;
+  }
 
-    .toc a {
-      display: block;
-      color: var(--muted);
-      text-decoration: none;
-      margin-bottom: 6px;
-    }
+  .toc a {
+    display: block;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 6px;
+  }
 
-    .toc a:hover {
-      color: white;
-    }
+  .toc a:hover {
+    color: var(--text);
+  }
 
-    /* Search */
-    .search {
-      margin-bottom: 20px;
-    }
+  .search input {
+    width: 100%;
+    padding: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+  }
 
-    .search input {
-      width: 100%;
-      padding: 8px;
-      background: #020617;
-      border: 1px solid var(--border);
-      color: white;
-      border-radius: 6px;
-    }
+  /* Toggle button */
+  .toggle {
+    margin-top: 10px;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    border-radius: 6px;
+    cursor: pointer;
+  }
 
-    /* Code blocks */
-    pre {
-      background: #020617 !important;
-      padding: 15px;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-  </style>
+  pre {
+    background: var(--code-bg) !important;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+</style>
+  
 </head>
 
 <body>
