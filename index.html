@@ -1,11 +1,240 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vaishnavi Jai</title>
-  <meta charset="UTF-8">
+
+  <!-- Prism for code highlighting -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #6366f1;
+      --border: #1f2937;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      display: grid;
+      grid-template-columns: 260px 1fr 260px;
+      font-family: -apple-system, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 20px;
+      border-right: 1px solid var(--border);
+      background: var(--panel);
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .nav a {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .nav a:hover {
+      color: white;
+    }
+
+    /* Main */
+    .main {
+      padding: 40px;
+      max-width: 800px;
+    }
+
+    h1 { font-size: 28px; margin-bottom: 10px; }
+    h2 { margin-top: 40px; margin-bottom: 10px; }
+    h3 { margin-top: 20px; }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    /* Right TOC */
+    .toc {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 20px;
+      border-left: 1px solid var(--border);
+      background: var(--panel);
+      font-size: 14px;
+    }
+
+    .toc h4 {
+      margin-bottom: 10px;
+    }
+
+    .toc a {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 6px;
+    }
+
+    .toc a:hover {
+      color: white;
+    }
+
+    /* Search */
+    .search {
+      margin-bottom: 20px;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 8px;
+      background: #020617;
+      border: 1px solid var(--border);
+      color: white;
+      border-radius: 6px;
+    }
+
+    /* Code blocks */
+    pre {
+      background: #020617 !important;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Hi, I’m a Senior Technical Writer</h1>
-  <p>This is my portfolio website.</p>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Vaishnavi Jai</h2>
+
+    <div class="search">
+      <input type="text" id="search" placeholder="Search..." />
+    </div>
+
+    <nav class="nav">
+      <a href="#intro">Introduction</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main" id="content">
+
+    <section id="intro">
+      <h1>Introduction</h1>
+      <p>
+        I'm a UX writer focused on building clear, structured, and scalable content systems.
+        My work lives at the intersection of product, engineering, and user experience.
+      </p>
+
+      <h2>Philosophy</h2>
+      <p>
+        Good documentation reduces friction. Great documentation disappears into the product.
+      </p>
+    </section>
+
+    <section id="use-cases">
+      <h1>Use Cases</h1>
+
+      <h2>Payment Optimization UX</h2>
+      <p>
+        Designed flows that reduce drop-offs during checkout by improving clarity around payment methods.
+      </p>
+
+      <pre><code class="language-js">
+function optimizeCheckout(user) {
+  if (user.prefersUPI) return showUPI();
+  return showAllMethods();
+}
+      </code></pre>
+
+      <h2>Audit Logs</h2>
+      <p>
+        Created structured log messaging systems for traceability and debugging.
+      </p>
+    </section>
+
+    <section id="experience">
+      <h1>Experience</h1>
+
+      <h2>UX Writer</h2>
+      <p>
+        Built scalable UX content systems across onboarding, compliance, and payments.
+      </p>
+
+      <h2>Key Skills</h2>
+      <ul>
+        <li>Information architecture</li>
+        <li>Microcopy systems</li>
+        <li>Developer-facing content</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h1>Contact</h1>
+      <p>Email: your@email.com</p>
+      <p>LinkedIn: your-link</p>
+    </section>
+
+  </main>
+
+  <!-- Right TOC -->
+  <aside class="toc">
+    <h4>On this page</h4>
+    <div id="toc"></div>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+
+  <script>
+    // Generate TOC
+    const headings = document.querySelectorAll(".main h2");
+    const toc = document.getElementById("toc");
+
+    headings.forEach(h => {
+      const id = h.innerText.replace(/\s+/g, "-").toLowerCase();
+      h.id = id;
+
+      const a = document.createElement("a");
+      a.href = "#" + id;
+      a.textContent = h.innerText;
+
+      toc.appendChild(a);
+    });
+
+    // Search
+    document.getElementById("search").addEventListener("input", e => {
+      const term = e.target.value.toLowerCase();
+      document.querySelectorAll(".main section").forEach(section => {
+        section.style.display = section.innerText.toLowerCase().includes(term)
+          ? "block"
+          : "none";
+      });
+    });
+  </script>
+
 </body>
 </html>
