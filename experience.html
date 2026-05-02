@@ -41,30 +41,25 @@
 <aside class="toc"><div id="toc"></div></aside>
 
 <script>
-/* same shared JS */
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+  const toggle = document.getElementById("themeToggle");
 
-document.getElementById("themeToggle").onclick = () => {
-  const current = document.documentElement.getAttribute("data-theme");
-  const next = current === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", next);
-  localStorage.setItem("theme", next);
-};
+  // Load saved theme
+  const savedTheme = localStorage.getItem("theme");
 
-document.querySelectorAll(".nav a").forEach(link => {
-  if (link.href === window.location.href) link.classList.add("active");
-});
+  if (savedTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    toggle.checked = true;
+  }
 
-const toc = document.getElementById("toc");
-document.querySelectorAll(".main h2").forEach(h => {
-  const id = h.innerText.replace(/\s+/g, "-").toLowerCase();
-  h.id = id;
-  const a = document.createElement("a");
-  a.href = "#" + id;
-  a.textContent = h.innerText;
-  toc.appendChild(a);
-});
+  toggle.addEventListener("change", () => {
+    if (toggle.checked) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+    }
+  });
 </script>
 
 </body>
