@@ -72,6 +72,12 @@ body {
   flex-direction: column;
 }
 
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .sidebar-bottom {
   margin-top: auto;
 }
