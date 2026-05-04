@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Experience</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
+<!-- SIDEBAR -->
 <aside class="sidebar">
 
-  <!-- TOP SECTION -->
   <div class="sidebar-top">
     <h2>Vaishnavi Jai</h2>
 
@@ -20,52 +21,55 @@
 
     <nav class="nav">
       <a href="/index.html">About Me</a>
-      <a href="/experience.html">Experience</a>
+      <a href="/experience.html" class="active">Experience</a>
       <a href="/samples.html">Samples</a>
       <a href="/contact.html">Contact</a>
     </nav>
   </div>
 
-  <!-- BOTTOM SECTION -->
   <div class="sidebar-bottom">
-    <div class="theme-switch">
-      <span>Theme</span>
-      <label class="switch">
-        <input type="checkbox" id="themeToggle">
-        <span class="slider">
-          <span class="icon sun">☀️</span>
-          <span class="icon moon">🌙</span>
-        </span>
-      </label>
-    </div>
+    <label class="switch">
+      <input type="checkbox" id="toggle">
+      <span class="slider">
+        <span>☀️</span>
+        <span>🌙</span>
+      </span>
+    </label>
   </div>
 
 </aside>
 
-  <nav class="nav">
-    <a href="/index.html">About Me</a>
-    <a href="/experience.html">Experience</a>
-    <a href="/samples.html">Samples</a>
-    <a href="/contact.html">Contact</a>
-  </nav>
-</aside>
+<!-- MAIN CONTENT -->
+<div class="main-wrapper">
+  <main class="main">
 
-<main class="main">
-  <h1>Experience</h1>
+    <h1>Experience</h1>
 
-  <h2>UX Writing</h2>
-  <p>Worked across onboarding and payments.</p>
+    <h2>UX Writing</h2>
+    <p>
+      You’ve worked across onboarding, payments, and compliance flows,
+      improving clarity and reducing friction in user journeys.
+    </p>
 
-  <h2>Systems</h2>
-  <p>Built scalable content frameworks.</p>
-</main>
+    <h2>Content Systems</h2>
+    <p>
+      You designed scalable messaging frameworks that ensure consistency
+      across product surfaces and workflows.
+    </p>
 
-<aside class="toc"><div id="toc"></div></aside>
+    <h2>Cross-functional Collaboration</h2>
+    <p>
+      You partner closely with product managers, engineers, and designers
+      to ship usable, well-structured systems—not just copy.
+    </p>
 
+  </main>
+</div>
+
+<!-- THEME SCRIPT -->
 <script>
-  const toggle = document.getElementById("themeToggle");
+  const toggle = document.getElementById("toggle");
 
-  // Load saved theme
   const savedTheme = localStorage.getItem("theme");
 
   if (savedTheme === "dark") {
@@ -74,13 +78,9 @@
   }
 
   toggle.addEventListener("change", () => {
-    if (toggle.checked) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-    }
+    const theme = toggle.checked ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   });
 </script>
 
