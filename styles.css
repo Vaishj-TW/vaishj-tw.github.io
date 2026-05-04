@@ -9,6 +9,17 @@
   --accent: #4f46e5;
   --border: #e5e7eb;
   --code-bg: #f3f4f6;
+  
+  /* Typography scale */
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-md: 16px;
+  --fs-lg: 20px;
+  --fs-xl: 28px;
+  --fs-2xl: 36px;
+  --lh-tight: 1.25;
+  --lh-normal: 1.6;
+  --lh-loose: 1.8;
 }
 
 [data-theme="dark"] {
@@ -27,29 +38,16 @@ body {
   display: grid;
   grid-template-columns: 260px 1fr 260px;
   font-family: 'Satoshi', -apple-system, system-ui, sans-serif;
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
   background: var(--bg);
   color: var(--text);
 }
 
-/* Sidebar */
-.sidebar {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  padding: 20px;
-  border-right: 1px solid var(--border);
-  background: var(--panel);
-}
-
-.sidebar h2 {
-  margin-bottom: 20px;
-}
-
 .nav a {
-  display: block;
-  color: var(--muted);
-  text-decoration: none;
-  padding: 8px 0;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  letter-spacing: 0.2px;
 }
 
 /* ACTIVE NAV */
@@ -62,19 +60,58 @@ body {
   color: var(--text);
 }
 
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 20px;
+  border-right: 1px solid var(--border);
+  background: var(--panel);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
 /* Main */
 .main {
   padding: 40px;
   max-width: 800px;
 }
 
-h1 { font-size: 28px; margin-bottom: 10px; }
-h2 { margin-top: 40px; margin-bottom: 10px; }
+.main > * + * {
+  margin-top: 8px;
+}
+
+h1 {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: var(--fs-md);
+  font-weight: 500;
+  margin-top: 24px;
+}
 
 p {
   color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 15px;
+  font-size: var(--fs-md);
+  line-height: var(--lh-loose);
+  margin-bottom: 16px;
+  max-width: 65ch;
 }
 
 /* TOC */
@@ -85,6 +122,15 @@ p {
   padding: 20px;
   border-left: 1px solid var(--border);
   background: var(--panel);
+  font-size: var(--fs-sm);
+}
+
+.toc h4 {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  color: var(--muted);
 }
 
 .toc a {
@@ -108,15 +154,6 @@ p {
   border-radius: 6px;
 }
 
-/* Toggle */
-.toggle {
-  margin-top: 10px;
-  padding: 6px;
-  border: 1px solid var(--border);
-  background: transparent;
-  cursor: pointer;
-}
-
 /* Code */
 pre {
   background: var(--code-bg);
@@ -124,18 +161,7 @@ pre {
   border-radius: 8px;
 }
 
-/* Ensure sidebar layout supports bottom alignment */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Push toggle to bottom */
-.sidebar-bottom {
-  margin-top: auto;
-}
-
-/* Toggle switch */
+/* Container */
 .theme-switch {
   display: flex;
   align-items: center;
@@ -144,10 +170,11 @@ pre {
   color: var(--muted);
 }
 
+/* Switch base */
 .switch {
   position: relative;
-  width: 42px;
-  height: 22px;
+  width: 52px;
+  height: 26px;
 }
 
 .switch input {
@@ -156,32 +183,62 @@ pre {
   height: 0;
 }
 
+/* Track */
 .slider {
   position: absolute;
-  cursor: pointer;
   inset: 0;
   background-color: var(--border);
   border-radius: 999px;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 12px;
 }
 
+/* Icons */
+.slider .icon {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Knob */
 .slider::before {
   content: "";
   position: absolute;
-  height: 16px;
-  width: 16px;
+  height: 20px;
+  width: 20px;
   left: 3px;
   top: 3px;
-  background-color: white;
+  background-color: var(--bg);
   border-radius: 50%;
   transition: 0.3s;
+  z-index: 2;
 }
 
 /* Active (dark mode) */
-input:checked + .slider {
+.switch input:checked + .slider {
   background-color: var(--accent);
 }
 
-input:checked + .slider::before {
-  transform: translateX(20px);
+.switch input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+/* Icon states */
+.slider .sun {
+  opacity: 1;
+}
+
+.slider .moon {
+  opacity: 0.3;
+}
+
+.switch input:checked + .slider .sun {
+  opacity: 0.3;
+}
+
+.switch input:checked + .slider .moon {
+  opacity: 1;
 }
