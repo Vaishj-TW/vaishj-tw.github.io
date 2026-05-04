@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>About Me</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -9,8 +9,6 @@
 <body>
 
 <aside class="sidebar">
-
-  <!-- TOP SECTION -->
   <div class="sidebar-top">
     <h2>Vaishnavi Jai</h2>
 
@@ -19,72 +17,51 @@
     </div>
 
     <nav class="nav">
-      <a href="/index.html">About Me</a>
+      <a href="/index.html" class="active">About Me</a>
       <a href="/experience.html">Experience</a>
       <a href="/samples.html">Samples</a>
       <a href="/contact.html">Contact</a>
     </nav>
   </div>
 
-  <!-- BOTTOM SECTION -->
   <div class="sidebar-bottom">
-    <div class="theme-switch">
-      <span>Theme</span>
-      <label class="switch">
-        <input type="checkbox" id="themeToggle">
-        <span class="slider">
-          <span class="icon sun">☀️</span>
-          <span class="icon moon">🌙</span>
-        </span>
-      </label>
-    </div>
+    <label class="switch">
+      <input type="checkbox" id="toggle">
+      <span class="slider">
+        <span>☀️</span>
+        <span>🌙</span>
+      </span>
+    </label>
   </div>
-
 </aside>
 
-  <nav class="nav">
-    <a href="/index.html">About Me</a>
-    <a href="/experience.html">Experience</a>
-    <a href="/samples.html">Samples</a>
-    <a href="/contact.html">Contact</a>
-  </nav>
-</aside>
+<div class="main-wrapper">
+  <main class="main">
+    <h1>About Me</h1>
 
-<main class="main">
-  <h1>About Me</h1>
+    <h2>Overview</h2>
+    <p>You build structured UX content systems.</p>
 
-  <h2>Overview</h2>
-  <p>You build structured UX content systems.</p>
+    <h2>Approach</h2>
+    <p>You treat content as part of the product system.</p>
+  </main>
+</div>
 
-  <h2>Approach</h2>
-  <p>You treat content as part of the product system.</p>
-</main>
-
-<aside class="toc">
-  <h4>On this page</h4>
-  <div id="toc"></div>
-</aside>
-
-<!-- shared script -->
 <script>
-  const toggle = document.getElementById("themeToggle");
+const toggle = document.getElementById("toggle");
 
-  const savedTheme = localStorage.getItem("theme");
+const saved = localStorage.getItem("theme");
+if (saved === "dark") {
+  document.documentElement.setAttribute("data-theme", "dark");
+  toggle.checked = true;
+}
 
-  if (savedTheme === "dark") {
-    document.documentElement.setAttribute("data-theme", "dark");
-    toggle.checked = true;
-  }
-
-  toggle.addEventListener("change", () => {
-    if (toggle.checked) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-    }
-  });
+toggle.addEventListener("change", () => {
+  const theme = toggle.checked ? "dark" : "light";
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+});
 </script>
+
 </body>
 </html>
