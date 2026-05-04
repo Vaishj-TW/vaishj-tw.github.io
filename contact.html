@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
+<!-- SIDEBAR -->
 <aside class="sidebar">
 
-  <!-- TOP SECTION -->
   <div class="sidebar-top">
     <h2>Vaishnavi Jai</h2>
 
@@ -22,45 +23,58 @@
       <a href="/index.html">About Me</a>
       <a href="/experience.html">Experience</a>
       <a href="/samples.html">Samples</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/contact.html" class="active">Contact</a>
     </nav>
   </div>
 
-  <!-- BOTTOM SECTION -->
   <div class="sidebar-bottom">
-    <div class="theme-switch">
-      <span>Theme</span>
-      <label class="switch">
-        <input type="checkbox" id="themeToggle">
-        <span class="slider">
-          <span class="icon sun">☀️</span>
-          <span class="icon moon">🌙</span>
-        </span>
-      </label>
-    </div>
+    <label class="switch">
+      <input type="checkbox" id="toggle">
+      <span class="slider">
+        <span>☀️</span>
+        <span>🌙</span>
+      </span>
+    </label>
   </div>
 
 </aside>
-  
-  <nav class="nav">
-    <a href="/index.html">About Me</a>
-    <a href="/experience.html">Experience</a>
-    <a href="/samples.html">Samples</a>
-    <a href="/contact.html">Contact</a>
-  </nav>
-</aside>
 
-<main class="main">
-  <h1>Contact</h1>
+<!-- MAIN CONTENT -->
+<div class="main-wrapper">
+  <main class="main">
 
-  <h2>Email</h2>
-  <p>your@email.com</p>
-</main>
+    <h1>Contact</h1>
 
-<aside class="toc"><div id="toc"></div></aside>
+    <h2>Email</h2>
+    <p>your@email.com</p>
 
+    <h2>LinkedIn</h2>
+    <p>https://linkedin.com/in/yourprofile</p>
+
+    <h2>Availability</h2>
+    <p>
+      Open to UX writing, content design, and documentation-focused roles.
+    </p>
+
+  </main>
+</div>
+
+<!-- THEME SCRIPT -->
 <script>
-/* same JS */
+  const toggle = document.getElementById("toggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    toggle.checked = true;
+  }
+
+  toggle.addEventListener("change", () => {
+    const theme = toggle.checked ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  });
 </script>
 
 </body>
